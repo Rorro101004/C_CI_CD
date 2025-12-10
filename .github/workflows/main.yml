@@ -1,0 +1,28 @@
+name: C CI Calculator
+
+# 1. ¿Cuándo se ejecuta? (Triggers)
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+# 2. ¿Qué trabajo va a hacer?
+jobs:
+  build-and-test:
+    # 3. ¿En qué máquina? (Requisito: ubuntu-latest)
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso A: Descargar tu código en la máquina de GitHub
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Paso B: Instalar herramientas (GCC y Make ya vienen, pero esto asegura la actualización)
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y build-essential
+
+    # Paso C: Compilar y Ejecutar Pruebas
+    # Como ya tenemos un Makefile, solo le decimos "haz el test"
+    - name: Run Tests
+      run: make test
