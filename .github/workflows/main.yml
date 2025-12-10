@@ -19,5 +19,5 @@ jobs:
     # Usamos la barra vertical '|' para poner varios comandos seguidos
     - name: Compile and Run Tests manually
       run: |
-        gcc -DTEST starter.c test_challenge07.c -o test_runner
+        gcc -DTEST starter.c test_challenge02.c -o test_runner
         ./test_runner
